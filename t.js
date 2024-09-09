@@ -1,0 +1,1 @@
+window.location.href = "./notes/main.pdf";
