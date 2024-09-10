@@ -4,16 +4,27 @@
 % Each 'section' is a chapter (PDF) on Brightspace
 % They are 1-indexed in accordance with the notes on BS
 
+\usepackage{enumitem}
+\usepackage{amsmath}
 \usepackage{parskip}
 \usepackage{outlines}
 \usepackage{framed}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagecolor{black}
+\color{white}
 
 \begin{document}
+
+
+\begin{flushright}
+    [Lecture 1.2]
+\end{flushright}
 
 \section{Introduction}
 Dr. Declan Delaney
 
-\subsection{Motivation}
+\subsection{Motivation and Introduction}
 \begin{outline}[enumerate]
 \1 Signals travel without wires
     \2 In this module, signals travel as radio waves\\
@@ -42,14 +53,14 @@ Example: Modern smart phone has approximately 9 distinct wireless systems. Try i
 \end{framed}
 
 \textbf{Advantages of Wireless}
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item Mobility
 \item Good for one-to-many transmission
 \item High-capacity point-to-point links (cheaper than wired) (e.g. to serve remote areas)
 \end{itemize}
 
 \textbf{Advantages of Wired}
-\begin{itemize}
+\begin{itemize}[noitemsep]
 \item Very little leakage
 \item No interference
 \item Multiple systems can operate adjacently without issue
@@ -60,6 +71,38 @@ Wired used for super high capacity lines (eg. fibre-optic transatlantic cables)
 \subsection{The Wireless Spectrum}
 The EM spectrum is a shared and limited resource.\\
 Mostly regulated by government agencies.
+
+Frequencies must be carefully given out, but can be reused at different locations as we will see.
+
+Overview of a wireless system:
+\begin{itemize} % TODO remove item separation
+\item Start with raw data
+\item Source coding (compression)
+\item Channel coding (error detection \& error correction)
+\item Modulation
+\item TX
+\item RX
+\item Demodulation
+\item Channel decoding
+\item Source decoding
+\end{itemize}
+
+This module is mainly about modulation and TX/RX, the rest is information theory.
+
+\subsection{Basics of Wireless Transmitter}
+Amplifier to increase signal power enough to drive the antenna
+
+\textbf{Multiple Access}
+\begin{itemize}
+\item CSMA: Listen to the channel, send if it's clear
+\item FDMA: Frequency divided MA
+\item TDMA: Time divided MA
+\end{itemize}
+3G uses FDMA and TDMA together.\\
+3G uses CDMA\\
+Also OFMA
+
+% TODO Look through remaining slides and pull some info re. labs, textbooks, etc.
 
 \subsection{Assessment \& Delivery}
     \begin{tabular}{ l l l }
