@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}
+
+% Style guide
+% Each 'section' is a chapter (PDF) on Brightspace
+% They are 1-indexed in accordance with the notes on BS
+
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{outlines}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagecolor{black}
+\color{white}
+
+\begin{document}
+
+\tableofcontents
+
+\begin{flushright}[Lecture on 1.2]\end{flushright}
+
+\section{Introduction}
+Dr. Declan Delaney
+
+\subsection{Motivation and Introduction}
+\begin{outline}[enumerate]
+\1 Signals travel without wires
+    \2 In this module, signals travel as radio waves\\
+    (optical and acoustic systems ignored)
+\1 Applications are mostly in communications
+    \2 Signals modulated to carry information
+    \2 Many familiar applications such as radar, navigation, etc.
+\end{outline}
+
+\begin{framed}
+Example: Modern smart phone has approximately 9 distinct wireless systems. Try identifying them?
+
+
+\begin{itemize}[noitemsep]
+    \item NFC
+    \item Cellulars
+    \begin{itemize}[noitemsep]
+        \item 2G
+        \item 3G
+        \item 4G
+        \item 5G
+    \end{itemize}
+    \item GPS
+    \item Bluetooth
+    \item WiFi
+    \item UWB
+    \item Lidar
+\end{itemize}
+\end{framed}
+
+\textbf{Advantages of Wireless}
+
+\begin{itemize}[noitemsep]
+    \item Mobility
+    \item Good for one-to-many transmissions
+    \item Cheap
+\end{itemize}
+Increasingly used for high capacity point-to-point links (cheaper than wired) (e.g. to serve remote areas)
+
+\textbf{Advantages of Wired}
+
+\begin{itemize}[noitemsep]
+    \item Very little leakage
+    \item No interference
+    \item Multiple systems can operate adjacently without issue
+\end{itemize}
+but considerably more overheads.
+Suitable for super high capacity lines (eg. fibre-optic transatlantic cables)
+
+\subsection{The Wireless Spectrum}
+The EM spectrum is a shared and limited resource.\\
+Mostly regulated by government agencies.
+
+Frequencies must be carefully given out, but can be reused at different locations as we will see.
+
+Overview of a wireless system:
+\begin{itemize}[noitemsep]
+\item Start with raw data
+\item Source coding (compression)
+\item Channel coding (error detection \& error correction)
+\item Modulation
+\item TX
+\item RX
+\item Demodulation
+\item Channel decoding
+\item Source decoding
+\end{itemize}
+
+This module is mainly about modulation and TX/RX, the rest is information theory.
+
+\subsection{Basics of Wireless Transmitter}
+Amplifier to increase signal power enough to drive the antenna
+
+\textbf{Multiple Access}
+\begin{itemize}[noitemsep]
+\item CSMA: Listen to the channel, send if it's clear
+\item FDMA: Frequency divided MA
+\item TDMA: Time divided MA
+\end{itemize}
+
+% TODO Look through remaining slides and pull some info re. labs, textbooks, etc.
+
+\subsection{Assessment \& Delivery}
+    \begin{tabular}{ l l l }
+        \textbf{Component} & \textbf{Timing} & \textbf{Weight} \\
+        Lab Assignments & Varied (4 labs) & 25\% \\
+        Online BS quizzes & ? & 25\% \\
+        Final Exam & & 50\%
+    \end{tabular}
+
+Open book final with emphasis on design and problem solving
+
+\subsection{Module Outline}
+
+\begin{itemize}[noitemsep]
+    \item (1) Radio Link Design
+    \begin{itemize}[noitemsep]
+        \item Link budget?
+        \item How far? How much power?
+    \end{itemize}
+    \item (2) Non-linear System
+    \item (3) Frequency Generation and Synthesis
+    \item (4) Transmitter Design
+    \begin{itemize}[noitemsep]
+        \item Requirements and specifications
+        \item Transmitter architecture choices
+    \end{itemize}
+    \item (5) Noise
+    \begin{itemize}[noitemsep]
+        \item Sources of noise
+        \item Noise analysis, low-noise design
+    \end{itemize}
+    \item (6) Receiver Design
+    \begin{itemize}[noitemsep]
+        \item Requirements and specifications
+        \item Receiver architecture choices
+    \end{itemize}
+    \item (7) Transceiver Design
+    \begin{itemize}[noitemsep]
+        \item Transmitter and receiver combined!
+    \end{itemize}
+    \item (8) Antennas and Propagation
+    \begin{itemize}[noitemsep]
+        \item Review of antenna theory
+        \item Practical antennas and propagation of radio waves
+    \end{itemize}
+    \item (9) System-Level Issues and Examples
+\end{itemize}
+
+\subsection{Textbooks}
+Purely optional, module notes should be sufficient.
+
+\begin{itemize}[noitemsep]
+    \item "Microwave and RF Design of Wireless Systems"
+
+    by David M. Pozar
+    \item "Antennas"
+
+    by John D. Kraus
+\end{itemize}
+
+\end{document}
