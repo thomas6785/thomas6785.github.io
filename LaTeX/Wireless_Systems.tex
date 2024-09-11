@@ -94,18 +94,6 @@ Overview of a wireless system:
 
 This module is mainly about modulation and TX/RX, the rest is information theory.
 
-\subsection{Basics of Wireless Transmitter}
-Amplifier to increase signal power enough to drive the antenna
-
-\textbf{Multiple Access}
-\begin{itemize}[noitemsep]
-\item CSMA: Listen to the channel, send if it's clear
-\item FDMA: Frequency divided MA
-\item TDMA: Time divided MA
-\end{itemize}
-
-% TODO Look through remaining slides and pull some info re. labs, textbooks, etc.
-
 \subsection{Assessment \& Delivery}
     \begin{tabular}{ l l l }
         \textbf{Component} & \textbf{Timing} & \textbf{Weight} \\
@@ -124,7 +112,7 @@ Open book final with emphasis on design and problem solving
         \item Link budget?
         \item How far? How much power?
     \end{itemize}
-    \item (2) Non-linear System
+    \item (2) Non-Linear System
     \item (3) Frequency Generation and Synthesis
     \item (4) Transmitter Design
     \begin{itemize}[noitemsep]
@@ -163,6 +151,75 @@ Purely optional, module notes should be sufficient.
     \item "Antennas"
 
     by John D. Kraus
+\end{itemize}
+
+\begin{flushright}[Lecture on 1.3]\end{flushright}
+
+\subsection{Basics of Wireless Communication}
+Amplifier to increase signal power enough to drive the antenna
+
+\textbf{Multiple Access}
+\begin{itemize}[noitemsep]
+\item CSMA: Listen to the channel, send if it's clear
+\item FDMA: Frequency divided MA
+\item TDMA: Time divided MA
+\end{itemize}
+
+You require a 'guard band' between frequency bands where no data is sent to avoid interference
+
+CDMA is a good way to overcome this waste, ODMA is an even better approach
+
+\subsubsection{Main components of a transmitter}
+\begin{itemize}[noitemsep]
+    \item Signal is 'mixed' (modulated) with an oscillator at the frequency of the channel being used
+    \begin{itemize}[noitemsep]
+        \item The frequency has to be adjustable to allow for different channels
+    \end{itemize}
+    \item A power amp is required to power an antenna
+\end{itemize}
+Amp goes first because high-frequency amplification is a fucking nightmare
+
+\subsubsection{Main components of a receiver}
+Signal arrives on an antenna (which collects EM waves in the vicinity, sometimes in a preferred direction, and puts them on a cable, waveguide, or circuit board track)
+
+RX:
+\begin{itemize}[noitemsep]
+    \item Receive at very low power
+    \item Select and amplify the desired signal
+    \item Estimate the original signal
+\end{itemize}
+
+The signal is too weak to demodulate, so you need a high-frequency amplifier before the demodulator.
+
+For most of this module, we will look at block-level circuits and not worry about precise circuit design.
+
+Channel capacity (Shannon-Hartley):
+\begin{math}
+C = B \times\text{log}_2(1+\frac{S}{N})
+\end{math}
+
+\begin{itemize}[noitemsep]
+    \item C is channel capacity (eg. bits per second)
+    \item B is bandwidth (Hz)
+    \item $\frac{S}{N}$ is the signal-to-noise ratio
+\end{itemize}
+
+Cellular:
+\begin{itemize}[noitemsep]
+    \item 2G operated at 800-900 MHz and 64 kHz channels
+    \item 3G operated at 1-2 GHz and got 8 MHz channels
+    \item 4G operates at up to 5 GHz and 50-100 MHz channels
+    \item 5G has channels up to 10 GHz
+\end{itemize}
+The increase in speed is partially due to better MA schemes, but mainly due to the bigger bandwidth.
+
+Other options to increase capacity:
+\begin{itemize}[noitemsep]
+    \item Increase SNR
+    \begin{itemize}[noitemsep]
+        \item Increase power (limited by regulations)
+        \item or reduce noise (choose a frequency with less background?)
+    \end{itemize}
 \end{itemize}
 
 \end{document}

@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+% Style guide
+
+\usepackage{lipsum}     % lol
+\usepackage{float}      % allows [H] arguments for images to be placed where they are in the text
+\usepackage{enumitem}   % For enumerated lists
+\usepackage{amsmath}    % For math
+\usepackage{parskip}    % Removes paragraph indent and adds paragraph gaps instead
+\usepackage{framed}     % FRame box useful for examples and closing off sections
+\usepackage{graphicx}   % For attaching images
+\usepackage{xcolor}     % To set backgrounds and text colour to dark theme
+
+% Set dark theme
+\pagecolor{black}
+\color{white}
+
+\begin{document}
+
+\begin{flushright}[Lecture on 1.1]\end{flushright}
+
+Prof. Mark Flanagan
+
+\textbf{N.B.} Module content has changed since last year, previous exams may not be relevant
+
+\subsection{Course Content}
+Necessary background:
+\begin{itemize}[noitemsep]
+    \item Signals and Systems
+    \begin{itemize}[noitemsep]
+        \item Fourier, FFT, autocorrelation, PSD, etc.
+    \end{itemize}
+    \item Probabiliy Theory
+    \begin{itemize}[noitemsep]
+        \item Baye's Rule
+    \end{itemize}
+    \item Random Signals
+    \begin{itemize}[noitemsep]
+        \item AWGN, etc.
+    \end{itemize}
+    \item Linear algebra
+    \begin{itemize}[noitemsep]
+        \item Vector spaces, inner products, etc.
+    \end{itemize}
+\end{itemize}
+
+Preliminary section: DMCs and the MAP rule.
+
+Three mains sections:
+\begin{itemize}[noitemsep]
+    \item Signal Space Analysis
+    \item Modulation Techniques
+    \item Wireless Communications
+\end{itemize}
+
+Recommended textbook: "Communication Systems" by Simon Haykin (4th ed)
+
+\subsection{Assessment}
+    \begin{tabular}{ |l l| }
+        \hline
+        \textbf{Component} & \textbf{Weight} \\ \hline
+        MATLAB Assignment 1   & 10\% \\ \hline
+        MATLAB Assignment 2   & 10\% \\ \hline
+        Final Exam            & 80\% \\ \hline
+    \end{tabular}
+
+\section{Discrete Memoryless Channel}
+Idealised channel with no memory.
+
+Symbols $x_j$ are transmitted, symbols $y_j$ are received for $0<j<M$.
+
+\begin{itemize}[noitemsep]
+    \item Probability map of TX symbols to RX symbols
+    \item 'a priori' probability of each symbol $x_j$ being transmitted
+    \item Use Bayes' and cleverness to get 'a posteriori' probability of $x_j$ for a given $y_j$
+\end{itemize}
+\textbf{Question}: Suppose $y_k$ is observed at the output. What is the \textit{optimum decision rule}?
+
+\textbf{Answer}: We define the optimum decision rule as follows: The receiver sets its decision $\hat{x}$ to be the \textit{most likely transmitted} symbol. This is called the 'maximum a posteriori' (MAP) decision rule. Mathematically:
+\[\hat{x}=\text{argmax}_{x_j} P(x_j|y_k) \]
+
+Using Bayes' rule,
+\[P(x_j|y_k) = \frac{P(y_k|x_j) \times P(x_j) }{P(y_k)}\]
+
+The first factor is given by the probability map of symbol errors. The second is given by the 'a priori' probabilities.
+
+\end{document}
