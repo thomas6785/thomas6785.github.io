@@ -1,5 +1,7 @@
 \documentclass[12pt]{article}
 
+
+%\setcounter{section}{-1}
 % Style guide
 % Each 'section' is a chapter (PDF) on Brightspace
 % They are 1-indexed in accordance with the notes on BS
@@ -97,10 +99,18 @@ This module is mainly about modulation and TX/RX, the rest is information theory
 \subsection{Assessment \& Delivery}
     \begin{tabular}{ l l l }
         \textbf{Component} & \textbf{Timing} & \textbf{Weight} \\
-        Lab Assignments & Varied (4 labs) & 25\% \\
+        Lab Assignments & Varied (3 labs) & 25\% \\
         Online BS quizzes & ? & 25\% \\
         Final Exam & & 50\%
     \end{tabular}
+
+
+\begin{itemize}[noitemsep]
+    \item Lab 1: Receiver architectures
+    \item Lab 2: Phase-Locked Loops
+    \item Lab 3: Amplifiers
+\end{itemize}
+
 
 Open book final with emphasis on design and problem solving
 
@@ -222,4 +232,28 @@ Other options to increase capacity:
     \end{itemize}
 \end{itemize}
 
+\section{Basic Antenna \& Propagation}
+\textbf{Radio link design}
+\begin{itemize}[noitemsep]
+    \item What will be the power at the receiver (or SNR)?
+    \item How far away can the antennae be?
+    \item How much power is needed?
+\end{itemize}
+Answers culminate in a \textit{link budget} calculation
+
+\textbf{Antennae}
+\begin{itemize}[noitemsep]
+    \item Circuitry generates the signal and amplifies to high power
+    \item High power signal goes along a 'feed track'
+    \begin{itemize}[noitemsep]
+        \item Very little losses here
+    \end{itemize}
+    \item Then into the antenna
+    \begin{itemize}[noitemsep]
+        \item Can be directed, but not guided, so loses power quickly
+        \item Not all power is radiated, some is lost
+    \end{itemize}
+\end{itemize}
 \end{document}
+
+\begin{flushright}[Lecture on 1.5]\end{flushright}
