@@ -254,6 +254,89 @@ Answers culminate in a \textit{link budget} calculation
         \item Not all power is radiated, some is lost
     \end{itemize}
 \end{itemize}
-\end{document}
 
 \begin{flushright}[Lecture on 1.5]\end{flushright}
+
+\textbf{Antenna Power}
+
+Ignoring free space losses
+\begin{itemize}[noitemsep]
+    \item Assume total power remains constant as it propagates
+    \item but spreads over a larger area (inverse square law)
+    \item Consider \textit{power density} in $W/m^2$
+\end{itemize}
+
+With space losses
+\begin{itemize}[noitemsep]
+    \item Model with a 'propagation constant' $\gamma \ge 2$
+    \item \begin{math}
+    \frac{\text{Power density at distance }r_2}{\text{Power density at distance }r_1} = \frac{r_1}{r_2}^\gamma
+    \end{math}
+\end{itemize}
+
+\textbf{Isotropic Reference Antenna}
+\begin{itemize}[noitemsep]
+    \item Assume a point source
+    \item Radiates in all directions uniformly
+    \item 100\% of input power is radiated
+\end{itemize}
+Not possible but useful for comparison purposes
+
+\textbf{Omni-directional Antenna}
+\begin{itemize}[noitemsep]
+    \item Similar model but losses are allowable
+    \item I npractice only possible in one plane
+\end{itemize}
+
+\textbf{Antenna Gain}
+\begin{itemize}[noitemsep]
+    \item Antennae are not amps - they don't actually have gain.
+    \item However, a focused antenna delivers more power to the receiver than an isotropic tradiator, so there is a 'focusing gain'\\[1em]
+
+    \begin{math}
+    \text{Gain in a particular direction} := \frac{\text{Power density observed in that direction}}{\text{Power density expected from an isotropic radiator}}
+    \end{math}\\[1em]
+
+    \item Obviously normally measured in the direction of transmission
+\end{itemize}
+
+\subsection{Receiver Antennae}
+
+\begin{itemize}[noitemsep]
+    \item Collects electromagnetic waves
+    \item May be directional - sensitive to waves from a certain direction
+    \item Measure the aperture / collection area
+    \begin{itemize}[noitemsep]
+        \item Some antennae have an obvious physical aperture (eg. parabolic dish)
+        \item Others have an 'effective aperture' $A$, such that
+        \begin{math}
+        P_{RX} = D_{RX}A
+        \end{math}
+        where $P_{RX}$ is the collected power and $D_{RX}$ is the power density of the incoming wave
+        \end{itemize}
+    \item Aperture efficiency
+    \begin{itemize}[noitemsep]
+        \item Even those with a physical aperture have an 'effective aperture', which is lower due to losses on the dish\\
+        \begin{math}
+            \text{Aperture efficiency} := \frac{\text{Effective aperture } A}{\text{Physical aperture}} < 1
+        \end{math}
+    \end{itemize}
+    \item Always use 'effective aperture', which accounts for dish losses
+\end{itemize}
+
+\textbf{Reciprocity}
+
+\begin{itemize}[noitemsep]
+    \item Antennae can TX and RX
+    \begin{itemize}[noitemsep]
+        \item Same beam and shape each way
+    \end{itemize}
+    \item RX gain is equal to TX gain
+    \item One expression for gain based on the aperture is\\
+    \begin{math}
+        G = \frac{4\pi A}{\lambda^2}
+    \end{math}
+    where $\lambda$ is wavelength.
+\end{itemize}
+
+\end{document}
