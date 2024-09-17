@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+
+% Style guide
+
+\usepackage{lipsum}     % lol
+\usepackage{float}      % allows [H] arguments for images to be placed where they are in the text
+\usepackage{enumitem}   % For enumerated lists
+\usepackage{amsmath}    % For math
+\usepackage{parskip}    % Removes paragraph indent and adds paragraph gaps instead
+\usepackage{framed}     % FRame box useful for examples and closing off sections
+\usepackage{graphicx}   % For attaching images
+\usepackage{xcolor}     % To set backgrounds and text colour to dark theme
+
+% Set dark theme
+\pagecolor{black}
+\color{white}
+
+\begin{document}
+
+\begin{flushright}[Lecture on ?.?]\end{flushright}
+
+\section{Introduction}
+\textbf{Professor}: ???
+
+\subsection{Motivation and Introduction}
+\begin{itemize}[noitemsep]
+    \item Insert module information here.
+    \item You can use the enumerate environment, but it's probably easier to number them by hand for more flexibility anyway.
+\end{itemize}
+
+\subsection{Assessment \& Delivery}
+    \begin{tabular}{ |l l l| }
+        \hline
+        \textbf{Component} & \textbf{Timing} & \textbf{Weight} \\ \hline
+        Item One Here       & Week 1        & 25\% \\ \hline
+        Item Two Here       & Week 2        & 30\% \\ \hline
+        Final Exam          &               & 45\% \\ \hline
+    \end{tabular}
+
+
+\subsection{Module Outline}
+
+\subsection{Textbooks}
+
+\subsection{Sample Notes}
+Notes may look something like this:
+\begin{framed}
+\textbf{This bit of text appears in a frame.}\\
+This could be useful to clearly demarcate the beginning or end of a derivation or sample problem.
+
+\[ x=1 \]
+
+You can put math in too!
+
+\end{framed}
+
+Normally we put slide titles or concepts like this.
+\begin{itemize}[noitemsep]
+    \item Press Ctrl+L to create a bulleted list
+    \item Like that
+    \begin{itemize}[noitemsep]
+        \item You can press it within a list for sub-points
+        \item Like that
+        \begin{itemize}[noitemsep]
+            \item or even sub-sub points!
+        \end{itemize}
+    \end{itemize}
+    \item That's how that works.
+\end{itemize}
+
+Press Ctrl+Shift+V then ENTER to paste images.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/image3.png}
+    %\caption{}
+    %\label{fig:}
+\end{figure}
+
+The [H] argument ensures the image appears in the right place.
+
+Use Ctrl+B or Ctrl+I to insert \textbf{bold} and \textit{italics}.
+
+\begin{flushright}[Lecture on 3.4]\end{flushright}
+Lastly, try to include lecture dates each time you start editing to make it easier to revise.
+
+To do this, enter 'lec' then hit tab to get the snippet.
+
+\end{document}

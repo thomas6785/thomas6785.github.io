@@ -1,4 +1,0 @@
-This is a text file!
-Created in Ubuntu.
-
-Adding more to the text file as a test.

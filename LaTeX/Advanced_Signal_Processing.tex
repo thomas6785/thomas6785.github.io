@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+
+% Style guide
+
+\setcounter{section}{-1}
+\usepackage{lipsum}     % lol
+\usepackage{float}      % allows [H] arguments for images to be placed where they are in the text
+\usepackage{enumitem}   % For enumerated lists
+\usepackage{amsmath}    % For math
+\usepackage{parskip}    % Removes paragraph indent and adds paragraph gaps instead
+\usepackage{framed}     % FRame box useful for examples and closing off sections
+\usepackage{graphicx}   % For attaching images
+\usepackage{xcolor}     % To set backgrounds and text colour to dark theme
+
+% Set dark theme
+\pagecolor{black}
+\color{white}
+
+\begin{document}
+
+\begin{flushright}[Lecture on 1.1]\end{flushright}
+
+\section{Introduction}
+\textbf{Professor}: Nam Tran
+
+\subsection{Topics}
+\begin{itemize}[noitemsep]
+    \item (0) Introduction
+    \item (1) Overview of Random Variables
+    \begin{itemize}[noitemsep]
+        \item Random signals
+    \end{itemize}
+    \item (2) Filtering of Random Signals
+    \begin{itemize}[noitemsep]
+        \item Filtering is effectively convolution - how can we apply a convolution to a function without known exact output (i.e. a random signal)?
+    \end{itemize}
+    \item (3) Estimation Theory
+    \item (4) Power Spectral Density Estimation
+    \item (5) Wiener Filter Theory
+    \item (6) Linear Estimator / Adaptive Linear Filter
+    \item (7) Channel Equalisation
+    \item (8) Image Processing
+\end{itemize}
+Lectures will not be recorded.
+
+No material will be taught in week 12 (per plan).
+
+\subsection{Assessment}
+    \begin{tabular}{ |l l l l| }
+        \hline
+        \textbf{Component} & \textbf{Timing} & \textbf{Weight} & \textbf{Topic} \\ \hline
+        Assignment 1       & Week 5        & 15\% & Topic (4) \\ \hline
+        Assignment 2       & Week 8/9      & 15\% & Topic (6) \\ \hline
+        Assignment 3       & Week 12       & 20\% & Topic (8) \\ \hline
+        Final Exam         &               & 50\% & \\ \hline
+    \end{tabular}
+
+
+\section{Review of Random Variables}
+\textbf{Random Variable}: Numerical description of the outcome of an experiment
+\textbf{Sample Space}: All possible values of an RV
+\textbf{Sample Point}: One possible value of an RV
+
+If the sample space takes form $\{x_1,x_2,x_3,...,x_N\}$ we have a \textit{discrete} RV.
+
+Capital letters are normally used.
+
+\begin{framed}
+\textbf{Example}
+Sending a packet has 0.9 success rate.
+Let X be the number of times you need to send a packet to get it through.
+
+P(X=1) = 0.9
+P(X=2) = 0.09
+E(x) = 1.1111
+\end{framed}
+
+\begin{flushright}[Lecture on 1.2]\end{flushright}
+Notes in a notebook currently. Need to decide whether to migrate them to LaTeX or migrate this to notebook. Probably the latter.
+
+\end{document}
