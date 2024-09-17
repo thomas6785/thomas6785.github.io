@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+    #main-content {
+        width:50%;
+        margin:auto;
+		font-family:"Lucida";
+    }
+    
+    #header {
+        text-align:center;
+        padding:1.5em 0px 1.5em 0px;
+        width:50%;
+        background-color:#cccccc;
+        margin:30px auto 30px auto;
+		font-family:"Courier New";
+    }
+
+    title {
+		display:block;
+        margin-bottom:30px;
+        font-size:25pt;
+    }
+
+    body {
+        color:#000;
+        background-color:#eeeeee;
+        padding:0px 0px 50px 0px;
+        margin:0px;
+        font-size:14pt;
+    }
+
+    .entry {
+        border-bottom:1px solid black;
+    }
+
+    div {
+        border: none;
+    }
+
+    img {
+        width:50%;
+    }
+
+    li {
+        margin-bottom:1em;
+    }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <b><title>Thomas O'Dea</title></b>
+        <a href="https://thomas6785.github.io/">Go back</a>
+    </div>
+    <div id="main-content">
+        <div class="entry"><p><b>
+            17/09/2024 Project Intro
+        </b><br/></p>
+            <p>
+            Three years ago, I tried designing and writing a chess engine from scratch, which I nicknamed Engie. I went through a few iterations and frustrated restarts before I finally got a working model. I did complete a prototype that could play against a beginner, but it was more than somewhat buggy.<br/>
+            <br/>
+            I never really considered the project 'finished', and it's always bothered me, so I'd like to revisit it (hopefully now as a better developer), and make note of new development here. I'll be starting from scratch and try to update this whenever I can. I'm kicking this project off just as the new college year begins, so progress may be inconsistent.<br/>
+            <br/>
+            I'll be writing in Python (despite how slow it is) and, to begin with, I'll try to rely as little as possible on external ideas and strategies for developing chess engines.
+            </p>
+        </div> <!--End of entry-->
+        <div class="entry"><p><b>
+            17/09/2024 Basic Idea
+        </b><br/></p>
+            <p>
+            Chess engines basically follow a minimax algorithm, with a heuristic to evaluate positions after a certain depth is reached. The heuristic will generally be a simple enough function that primarily looks at the value of the pieces on the board, how well-placed they are, and each player's control of space on the board generally. It does <i>not</i> consider whether these pieces are vulnerable to attack. This can lead to the <i>horizon problem</i>. For instance, consider the board below:<br/>
+            <img src="resources/image.png"> (Black to move)<br/>
+            A simple heuristic will judge that white is winning hugely simply because they have 12 points of value (queen=9, pawn=1) where black only has 5 (rook=5). However, black is in fact winning instantly with Rc1#.<br/>
+            <br/>
+            While this example exaggerates the problem, it is likely to appear in less obvious ways, such as if the end of the tree search landed just before a piece was to be recaptured.<br/>
+            <br/>
+            To address this, before applying the heuristic, we consider how 'volatile' the board's state is. If it's too volatile, we'll consider to expand the move tree until we reach simpler positions. This is known as quiescence.<br/>
+            <br/>
+            Typical chess positions could have up to 30 legal moves, so the move tree can grow very quickly. Fortunately, there are some helpful way to cut this down:<ul>
+            <li><b>Transposition:</b> The same moves played in a different order will generally result in the same position, so nodes in the tree can be merged. In chess this is known as transposition.</li>
+            <li><b>Alpha-Beta Pruning:</b> In a depth-first approach, very large portions of the tree can be pruned quickly once one line has been analysed.</li>
+            <li><b>Iterative Deepening:</b> Rather than going straight for the full-depth analysis, it may be worthwhile to begin with a lighter initial analysis to prune off any 'obviously' bad options.</li>
+            <li><b>Allow Inconclusive Evaluations:</b> Though this could potentially lead to inaccurate play, if one line of analysis results in a complex, volatile positions requiring length quiescence and analysis, the engine may be better served to simply rule it 'inconclusive' and treat it is a losing line to be avoided.
+            </ul>
+            In fact, all of these are techniques humans use intuitively when analysing a game.
+        </p></div> <!--End of entry-->
+
+        <div class="entry"><p><b>
+            17/09/2024 Transposition Thoughts
+        </b><br/></p><p>
+            Transposition seems like a simple way to cut down on analysis time. As a rough estimate, after 4 half-moves (two 'full moves' being two for white, two for black), there are four possible orderings of those four moves which all result in the same position. Therefore, there are only one quarter as many positions to analyse when duplicates are removed. At 6 half-moves, there would be 35 times more duplicates than uniques, and it scales dramatically from there (square of the factorial of the full move count). This analysis neglects the fact that certain move orderings may not be possible (if moves interfere with one another), but nonetheless demonstrates how important transposition is for speeding up analysis.<br/>
+            <br/>
+            But there's a big problem with it. Consider two ways of starting a game:
+            </p>
+            <div style="text-align:center;">
+                <div style="float:left;width:49%;">
+                    <p>
+                        1. Nf3 Nf6<br/>
+                        2. Nc3 Nc6
+                    </p>
+                    <img src="resources/image2.png">
+                </div><div style="float:left;width:49%;">
+                    <p>
+                        1. Nc3 Nf6<br/>
+                        2. Nf3 Nc6
+                    </p>
+                    <img src="resources/image2.png">
+                </div>
+            </div>
+            Can you spot the difference between these two positions?<br/>
+            <br/>
+            The pieces on the board may be identically placed, but the <i>history</i> of positions are not - this is significant only for the rule of threefold repetition.<br/>
+            <br/>
+            Yes, just because of that one rule, we have to store alongside each position a list of every previous position it has been in. Only positions which can be reached again are relevant for threefold repetition, so once an irreversible move is made, this list can be cleared. The irreversible moves are:<ul>
+            <li>Any pawn move</li>
+            <li>Any capture</li>
+            <li>Moving a rook or king in a manner that affects castling rights (including castling itself)</li>
+            </ul>
+            Fortunately the first two happen reasonably often in a typical game, which will help to mitigate this problem<br/>
+            <br/>
+            I came up with a decent solution to this problem after some head-scratching, which is as follows:<ul>
+            <li> In minimax, nodes call a recursive tree search on each of their child nodes, each child returning an evaluation based on their recursive search. Normally this evaluation is a single number quantifying whether white or black is winning in that line.
+            <li> In my solution, the evaluation also has attached to to it a list of positions that are reached between the current node and the next irreversible move along the main line.
+            </ul>
+            This way, when the transposing node come along and realises it shares its positions with a node previously analysed, it can simply check whether any of its past positions conflict with any of those in the evaluation's list. If it doesn't, the transposing node can safely reuse the original node's evaluation and return.<br/>
+            <br/>
+            This approach also solves the 50-move-rule problem, whereby the transposing node simply checks that the move count till the next irreversible move will not cause their line to exceed 50.
+
+        </div> <!--End of entry-->
+    </div>
+</body>
+</html>

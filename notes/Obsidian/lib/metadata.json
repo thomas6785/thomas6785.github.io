@@ -1,6 +1,6 @@
 {
   "vaultName": "Autumn Stage 4 Obsidian Vault",
-  "lastExport": 1726567644027,
+  "lastExport": 1726581774682,
   "pluginVersion": "1.8.01",
   "validBodyClasses": "publish css-settings-manager show-inline-title show-ribbon theme-dark",
   "useCustomHeadContent": false,
@@ -14,25 +14,25 @@
   "mainDependencies": [],
   "fileInfo": {
     "Modules/Digital Communications.md": {
-      "modifiedTime": 1726567644027,
+      "modifiedTime": 1726581774682,
       "sourceSize": 9469,
       "exportedPath": "Modules/Digital Communications.html",
       "dependencies": []
     },
     "Modules/Information Theory.md": {
-      "modifiedTime": 1726567644027,
-      "sourceSize": 2964,
+      "modifiedTime": 1726581774682,
+      "sourceSize": 5338,
       "exportedPath": "Modules/Information Theory.html",
       "dependencies": []
     },
     "Modules/Networks and Internet Systems.md": {
-      "modifiedTime": 1726567644027,
+      "modifiedTime": 1726581774682,
       "sourceSize": 5520,
       "exportedPath": "Modules/Networks and Internet Systems.html",
       "dependencies": []
     },
     "Modules/Software Engineering.md": {
-      "modifiedTime": 1726567644027,
+      "modifiedTime": 1726581774682,
       "sourceSize": 7220,
       "exportedPath": "Modules/Software Engineering.html",
       "dependencies": []
