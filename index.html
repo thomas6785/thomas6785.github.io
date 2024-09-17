@@ -49,12 +49,17 @@
 		<h1>Projects</h1>
         <p class="page-link-item"><a href="pages/engie.html">Chess Engine Project ("Engie")</a></p>
 
-		<h1>Updates</h1>
+		<h1>Updates and Points of Interest</h1>
 		<div id="updates-area">
 			<h2>17/09/2024 Card Shuffling Simulation</h2>
 			I simulated shuffling a deck of cards using the <a href="https://www.stat.berkeley.edu/~aldous/157/Papers/bayer_diaconis.pdf">Gilbert-Shannon-Reeds model</a> and found some interesting results. Though the paper recommends seven riffle shuffles generally being enough, I simulated 50,000 decks and found that the card initially on the bottom of the deck had a 52% chance of still being in the lower half of the deck after seven riffles.<br/>
 			<div style="text-align:center;"><img src="resources/card_shuffling_overview.png" width="100%"/><br/></div>
-			No amount of riffle shuffling can ever fully eliminate the 'traces' of the original deck.
+			No amount of riffle shuffling can ever fully eliminate the 'traces' of the original deck.<br/>
+			<br/>
+			Further analysis to be done:<ul>
+			<li>Through simulation or analysis, find a 52x52 matrix that shows how likely each card is to end up in each other positions after a riffle. Exponentiating this matrix could give a picture of how likely a card is to be in certain parts of the deck, a useful tool for analysis.</li>
+			<li>Consider the effect of larger decks of cards. How many shuffles are needed?</li>
+			</ul>
 
 			<h2>16/09/2024 Podcast Published with UCD on AI in Education</h2>
 			Back in April I had the privilege of joining two peers, Thomas Doyle and Tara Cullinane, in a studio in UCD to record a 30 minute podcast about the future of AI in education. The podcast finally went public today and you can <a href="https://www.ucd.ie/eacollege/study/bridgesandbytesthestudentvoiceonaiandassessment/">hear it on UCD's website</a> (episode 1: Closed Book Exams).<br/>
