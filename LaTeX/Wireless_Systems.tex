@@ -4,6 +4,9 @@
 %\setcounter{section}{-1}
 % Style guide
 % Each 'section' is a chapter (PDF) on Brightspace
+% Each 'subsection' is one of those slides with the headings all faded except the one we're now starting
+% Each slide is a bold heading with bullet points
+% Numerous headings on a similar topic may be grouped into sub-sub-sections discretionarily
 % They are 1-indexed in accordance with the notes on BS
 
 \usepackage{enumitem}
@@ -232,7 +235,8 @@ Other options to increase capacity:
     \end{itemize}
 \end{itemize}
 
-\section{Basic Antenna \& Propagation}
+\section{Basic Antennae \& Propagation}
+\subsection{Basic Antennae}
 \textbf{Radio link design}
 \begin{itemize}[noitemsep]
     \item What will be the power at the receiver (or SNR)?
@@ -300,7 +304,7 @@ Not possible but useful for comparison purposes
     \item Obviously normally measured in the direction of transmission
 \end{itemize}
 
-\subsection{Receiver Antennae}
+\subsubsection{Receiver Antennae}
 
 \begin{itemize}[noitemsep]
     \item Collects electromagnetic waves
@@ -338,5 +342,126 @@ Not possible but useful for comparison purposes
     \end{math}
     where $\lambda$ is wavelength.
 \end{itemize}
+
+\begin{flushright}[Lecture on 2.2]\end{flushright}
+
+\subsection{Basic Propagation}
+
+\begin{itemize}[noitemsep]
+    \item Speed of light in free space
+\end{itemize}
+
+\textbf{Propagation on Earth}
+\begin{itemize}[noitemsep]
+    \item Curvature of Earth comes into play
+    \item Distance to horizon is given by $d=\sqrt{h(2R+h)}\sim \sqrt{2Rh}$
+    
+    where $R$ is Earth's radius and $h$ is the tower height
+    \item For tower-to-tower, you have to consider the height of both towers, the maximum distance between them is the sum of their distances to horizon
+\end{itemize}
+
+\textbf{Atmospheric Effects at High Frequency}
+\begin{itemize}[noitemsep]
+    \item Air is less dense higher up so refraction causes high frequency waves to 'bend' downward, which shortens transmission range
+    \item Compensate by pointing TX upward, increasing total range!
+    \item 'Effective' Earth radius $R$ becomes $\frac{4}{3} R$
+\end{itemize}
+
+\textbf{Atmospheric Effects at Low Frequency}
+\begin{itemize}[noitemsep]
+    \item Between 3 and 30 MHz, strong refraction in ionosphere
+    \item Waves can bend back and return to Earth
+    \item But propagation changes with day/night and season
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/image4.png}
+    %\caption{} % Optional caption
+    %\label{fig:} % Optional label for referencing
+\end{figure}
+
+Cool fact: at 3 Mz, a vertically polarised wave will curve around Earth's surface perfectly (called ground wave propagation, example is the Rugby Atomic Clock system)
+
+\subsubsection{Free Space Links}
+Consider a line-of-sight scenario
+\begin{itemize}[noitemsep]
+    \item Typically > 1 GHz
+    \item Directional antennae on both ends
+    \item No obstructions
+\end{itemize}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/image5.png}
+    %\caption{} % Optional caption
+    %\label{fig:} % Optional label for referencing
+\end{figure}
+This is not a suitable line-of-sight (LOS) path (blue), because the hills are \textit{close} to the LOS, which will cause reflections
+
+Consider two paths: direct path and reflected path. Calculate the length of each and therefore the phase difference on arrival - if they are 180 degrees out of phase, the signal will be completely destroyed! Reflection causes 180 degree phase switch
+Okay but isn't signal strength relevant here ?
+See slide 25 in this chapter
+
+\subsubsection{Fresnel Zones}
+The $n$th Fresnel zone is the ellipsoid space around transmitters where the length of any reflected path is between $(n-1)\frac{\lambda}{2}$ and $n\frac{\lambda}{2}$ longer than the LOS path.
+
+Accordingly, an object inside the 1st Fresnel Zone would induce a phase difference between $\pi$ and $2\pi$.
+
+The presence of obstructions in the Fresnel zone will result in \textit{some} parts of the receiving area geting destructive interference
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/image6.png}
+    %\caption{} % Optional caption
+    %\label{fig:} % Optional label for referencing
+\end{figure}
+
+Radius of the $nth$ Fresnel zone at distance $d_1$ and $d_2$ is $r_n \sim \sqrt{\frac{n\lambda d_1 d_2}{d}}$
+
+\textbf{e.g.} For a 10 km link at 10 GHz, radius is $\sim$9 m at the centre
+
+An object right at the edge of the Fresnel Zone actually causes constructive interference. It gets more destructive the further it goes in
+
+Okay this makes a lot of sense but I'm losing track of the Fresnel 'layers' - is the boundary of the 2nd zone constructive or destructive ? Need to get a pen and paper and just figuer that out
+
+Assume the reflecting surface is parallel to the LOS (anything else isn't relevant ig?)
+
+An object in the very centre of the Fresnel Zone (parallel to the LOS) will cause perfect destructive interference (because the reflection itself causes a phase flip, and the path length will be the same)
+
+We normally allow objects to be up to 20\% into the Fresnel zone
+
+\subsubsection{Non-Free Space Links}
+
+\begin{itemize}[noitemsep]
+    \item In an indoor or urban landscape, there are way too many reflecting paths to use rely on Fresnel zones
+    \item Variation may be rapid (e.g. high-speed trains in the way)
+    \item LOS may not exist
+    \item Different paths with different lengths
+\end{itemize}
+
+\section{Link Budgets}
+\textbf{Contents}
+
+\begin{itemize}[noitemsep]
+    \item Computing RX signal power
+    \begin{itemize}[noitemsep]
+        \item Example link budget analysis
+        \item Using link budget to answer design questions
+    \end{itemize}
+    \item Working in decibel units
+    \begin{itemize}[noitemsep]
+        \item Power ratio
+        \item Cascade of linear systems
+        \item Other dB quantities
+        \item Link budget example with dB
+    \end{itemize}
+    \item Example broadcast satellite system
+    \item Exam question Autumn 2021/22
+\end{itemize}
+
+\subsection{Computing the RX Signal Power}
+
+\textbf{EIRP:} Effective Isotropic Radiated Power
+A measure of local signal strength that answer this question: If the transmitter were an isotropic radiator (in the same place the actual antenna is), how powerful would it need to be for us to be receiving at this strength?
+Measured as a power (Watts or dBW or similar)
 
 \end{document}
