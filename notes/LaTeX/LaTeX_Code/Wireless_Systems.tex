@@ -464,6 +464,36 @@ We normally allow objects to be up to 20\% into the Fresnel zone
 A measure of local signal strength that answer this question: If the transmitter were an isotropic radiator (in the same place the actual antenna is), how powerful would it need to be for us to be receiving at this strength?
 Measured as a power (Watts or dBW or similar)
 
+\begin{flushright}[Lecture on 2.5]\end{flushright}
+
+\subsection{Working with Decibels}
+Decibels (dB) define a \textit{ratio} of powers, not a power value (though dB is sometimes used as shorthand for dBW, confusingly)
+
+\begin{math}
+    G \text{[dB]} = 10\times \text{log}\frac{P_1}{P_2}
+\end{math}
+
+\begin{itemize}[noitemsep]
+    \item \textbf{dB}: Measure of power ratio, between two powers
+    \item \textbf{dBW}: Measure of power value, with a reference denominator of 1 W
+    \item \textbf{dBm}: Measure of power value, with a reference denominator of 1 mW
+\end{itemize}
+
+\begin{framed}
+e.g.
+\begin{itemize}[noitemsep]
+    \item 10 dB corresponds to a tenfold increase in power
+    \item 20 dB corresponds to a hundredfold increase in power
+    \item 0 dBW = 1 W
+    \item 10 dBW = 10 W
+    \item 20 dBW = 100 W
+\end{itemize}
+\end{framed}
+
+Summing decibel values is equivalent to \textit{multiplying} gain factors.
+
+You should never sum dBW
+
 
 
 \end{document}
