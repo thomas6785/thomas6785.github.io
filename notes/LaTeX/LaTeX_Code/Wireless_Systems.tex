@@ -490,10 +490,45 @@ e.g.
 \end{itemize}
 \end{framed}
 
-Summing decibel values is equivalent to \textit{multiplying} gain factors.
+Summing decibel v\textbf{}alues is equivalent to \textit{multiplying} gain factors.
 
 You should never sum dBW
 
+You can sum dB with dBm or dBW to get another value in dBm or dBW, equivalent to applying a gain factor to an absolute power value.
+
+\subsubsection{Power Spectral Density}
+People get this wrong a lot.
+
+\begin{itemize}[noitemsep]
+    \item Has units W/Hz
+    \item Continuous spectrum of values at different Frequencies
+    \item Often converted to dBW/Hz or dBm/Hz
+\end{itemize}
+
+\begin{framed}
+e.g.
+White noise has a flat PSD (by definition), often assumed to have value
+
+\begin{math}
+N_o = -174 \text{ dBm/Hz}
+\end{math}
+
+Therefore in a 100 Hz bandwidth, there is -154 dBm of noise
+
+(not an intuitive calculation, you can't simply multiply because that's equivalent to summing a series of dBm values)
+\end{framed}
+
+\subsubsection{Precision in Decibel Units}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/image7.png}
+    %\caption{} % Optional caption
+    %\label{fig:} % Optional label for referencing
+\end{figure}
+Usually only use one (or two) decimal places in dB to avoid excessive precision
+
+\begin{flushright}[Lecture on 3.2]\end{flushright}
+\section{Nonlinear Systems}
 
 
 \end{document}
