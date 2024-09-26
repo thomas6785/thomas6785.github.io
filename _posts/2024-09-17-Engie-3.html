@@ -1,0 +1,43 @@
+---
+title: (Engie) Transposition Thoughts
+layout: post
+tags: engie hide-from-index
+---
+<p>
+Transposition seems like a simple way to cut down on analysis time. As a rough estimate, after 4 half-moves (two 'full moves' being two for white, two for black), there are four possible orderings of those four moves which all result in the same position. Therefore, there are only one quarter as many positions to analyse when duplicates are removed. At 6 half-moves, there would be 35 times more duplicates than uniques, and it scales dramatically from there (square of the factorial of the full move count). This analysis neglects the fact that certain move orderings may not be possible (if moves interfere with one another), but nonetheless demonstrates how important transposition is for speeding up analysis.<br/>
+<br/>
+But there's a big problem with it. Consider two ways of starting a game:
+</p>
+<div style="text-align:center;">
+    <div style="float:left;width:49%;">
+        <p>
+            1. Nf3 Nf6<br/>
+            2. Nc3 Nc6
+        </p>
+        <img src="/images/engie-basic-idea-opening-example.png" width="66%">
+    </div><div style="float:left;width:49%;">
+        <p>
+            1. Nc3 Nf6<br/>
+            2. Nf3 Nc6
+        </p>
+        <img src="/images/engie-basic-idea-opening-example.png" width="66%">
+    </div>
+</div>
+Can you spot the difference between these two positions?<br/>
+<br/>
+The pieces on the board may be identically placed, but the <i>history</i> of positions are not - this is significant only for the rule of threefold repetition.<br/>
+<br/>
+Yes, just because of that one rule, we have to store alongside each position a list of every previous position it has been in. Only positions which can be reached again are relevant for threefold repetition, so once an irreversible move is made, this list can be cleared. The irreversible moves are:<ul>
+<li>Any pawn move</li>
+<li>Any capture</li>
+<li>Moving a rook or king in a manner that affects castling rights (including castling itself)</li>
+</ul>
+Fortunately the first two happen reasonably often in a typical game, which will help to mitigate this problem<br/>
+<br/>
+I came up with a decent solution to this problem after some head-scratching, which is as follows:<ul>
+<li> In minimax, nodes call a recursive tree search on each of their child nodes, each child returning an evaluation based on their recursive search. Normally this evaluation is a single number quantifying whether white or black is winning in that line.
+<li> In my solution, the evaluation also has attached to to it a list of positions that are reached between the current node and the next irreversible move along the main line.
+</ul>
+This way, when the transposing node come along and realises it shares its positions with a node previously analysed, it can simply check whether any of its past positions conflict with any of those in the evaluation's list. If it doesn't, the transposing node can safely reuse the original node's evaluation and return.<br/>
+<br/>
+This approach also solves the 50-move-rule problem, whereby the transposing node simply checks that the move count till the next irreversible move will not cause their line to exceed 50.

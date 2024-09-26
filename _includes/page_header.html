@@ -1,0 +1,9 @@
+<b><title>{{page.title}}</title></b>
+
+<nav id="header-nav">
+  <hr>
+  {% for item in site.data.navigation %}
+    {% if page.url==item.link %}{{item.name}}{% else %}<a href="{{ item.link }}">{{ item.name }}</a>{% endif %}
+  {% endfor %}
+  <hr>
+</nav>

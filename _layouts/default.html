@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    {% include google_analytics_tag.html %}
+    {% include html_head_boilerplate.html %}
+    {% feed_meta %}
+
+</head>
+<body>
+    {% include page_header.html %}
+
+    <div id="main-content">
+        {{content}}
+    </div>
+</body>
+</html>

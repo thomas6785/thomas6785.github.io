@@ -1,0 +1,20 @@
+---
+title: (Engie) Basic Idea
+layout: post
+tags: engie hide-from-index
+---
+Chess engines basically follow a minimax algorithm, with a heuristic to evaluate positions after a certain depth is reached. The heuristic will generally be a simple enough function that primarily looks at the value of the pieces on the board, how well-placed they are, and each player's control of space on the board generally. It does <i>not</i> consider whether these pieces are vulnerable to attack. This can lead to the <i>horizon problem</i>. For instance, consider the board below:<br/>
+<img src="/images/engie-basic-idea-black-to-move.png" width="40%"> (Black to move)<br/>
+A simple heuristic will judge that white is winning hugely simply because they have 12 points of value (queen=9, pawn=1) where black only has 5 (rook=5). However, black is in fact winning instantly with Rc1#.<br/>
+<br/>
+While this example exaggerates the problem, it is likely to appear in less obvious ways, such as if the end of the tree search landed just before a piece was to be recaptured.<br/>
+<br/>
+To address this, before applying the heuristic, we consider how 'volatile' the board's state is. If it's too volatile, we'll consider to expand the move tree until we reach simpler positions. This is known as quiescence.<br/>
+<br/>
+Typical chess positions could have up to 30 legal moves, so the move tree can grow very quickly. Fortunately, there are some helpful way to cut this down:<ul>
+<li><b>Transposition:</b> The same moves played in a different order will generally result in the same position, so nodes in the tree can be merged. In chess this is known as transposition.</li>
+<li><b>Alpha-Beta Pruning:</b> In a depth-first approach, very large portions of the tree can be pruned quickly once one line has been analysed.</li>
+<li><b>Iterative Deepening:</b> Rather than going straight for the full-depth analysis, it may be worthwhile to begin with a lighter initial analysis to prune off any 'obviously' bad options.</li>
+<li><b>Allow Inconclusive Evaluations:</b> Though this could potentially lead to inaccurate play, if one line of analysis results in a complex, volatile positions requiring length quiescence and analysis, the engine may be better served to simply rule it 'inconclusive' and treat it is a losing line to be avoided.
+</ul>
+In fact, all of these are techniques humans use intuitively when analysing a game.
