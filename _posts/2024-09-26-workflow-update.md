@@ -10,6 +10,7 @@ My workflow is a little unusual but working great:
 	- I primarily edit this via Obsidian (Markdown files)
 	- but also use VScode for LaTeX and HTML files
 - Some folders within this vault are git submodules - one of these is this website
-- Obsidian has built-in functionality for creating notes from templates, so now I can easily create new blog posts in Obsidian and they'll get pushed straight to the GitHub repo when I commit.
+- Obsidian has built-in functionality for creating notes from templates, so now I can easily create new blog posts in Obsidian and they'll get pushed straight to the GitHub repo when I commit
+- Obsidian plugin 'Webpage HTML Export' is configured to render my college notes into HTML pages and put them into one of the public repositories for classmates to view
 
-Also, I've configured an Atom feed at thomas6785.github.io/feed.xml.
+Also, I've configured an Atom feed at [thomas6785.github.io/feed.xml](thomas6785.github.io/feed.xml "Why are you reading the tooltip?"), but it's not behaving entirely correctly.
