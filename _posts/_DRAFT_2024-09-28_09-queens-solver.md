@@ -5,7 +5,7 @@ tags:
 ---
 I've written a basic brute forcer for the new LinkedIn game _Queens_.
 
-Current version is extremely straightforward, resembling:
+Current version is an extremely straightforward recursive function:
 ```
 define attempt_solve( board ):
 	while True:
@@ -24,5 +24,12 @@ define attempt_solve( board ):
 			If this returns (True,solved_board):
 				Return (True,solved_board)
 			else:
-				
+				Mark new_cell on board as 'x'
 ```
+The logic for adding queens and marking off incident cells is quite clumsy and needs some tidying, but it solved today's Queens in under two minutes. With some optimisations, this time should reduce drastically.
+
+Future developments:
+- Optimise logic for adding queens and marking off incident cells
+- 
+- Integrate web automation to automatically detect the colours (currently entered manually) and enter the solution in
+- 
