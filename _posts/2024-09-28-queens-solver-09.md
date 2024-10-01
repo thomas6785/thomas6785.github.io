@@ -31,7 +31,7 @@ define attempt_solve( board ):
 			else:
 				Mark new_cell on board as 'x'
 ```
-It solved today's Queens in under 7 seconds. This could be reduced quite drastically with some more optimisation.
+It solved today's Queens in under 122 milliseconds. This could be be reduced quite a bit with some more optimisation.
 
 This was a fun challenge I'd recommend anyone giving a go at.
 
