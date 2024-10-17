@@ -2,18 +2,16 @@
 title: Countdowns
 layout: default
 ---
-{% assign countdown_dates = "2024-10-29,2024-11-29,2024-12-21,2024-12-25,2025-01-07,2025-01-20,2025-02-14,2025-02-28" | split: "," %}
-{% assign countdown_names = "Anniversary with Mia,End of Classes,Christmas Break,Christmas Day,San Francisco,AMD Start Day,Valentine's Day,Mega AMD Paycheck" | split: "," %}
-{% for index in (0..countdown_dates.size-1) %}
+{% for countdown in site.data.countdowns | sort: "date" %}
 
 <!-- Display the countdown timer in an element -->
-<p>Countdown to {{ countdown_names[index] }}</p>
-<p id="timer{{ index }}"></p>
+<p>Countdown to {{ countdown.name }}</p>
+<p id="timer{{ forloop.index }}"></p>
 <br/>
 
 <script>
 // Set the date we're counting down to
-var countDownDate{{ forloop.index }} = new Date("{{ countdown_dates[index] }}").getTime();
+var countDownDate{{ forloop.index }} = new Date("{{ countdown.date }}").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -22,7 +20,7 @@ var x = setInterval(function() {
   var now = new Date().getTime();
 
   // Find the distance between now and the count down date
-  var distance = countDownDate{{ index }} - now;
+  var distance = countDownDate{{ forloop.index }} - now;
 
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -31,15 +29,15 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  document.getElementById("timer{{ index }}").innerHTML = days + "d " + hours + "h "
+  document.getElementById("timer{{ forloop.index }}").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
 
   // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("timer{{ index }}").innerHTML = "EXPIRED";
+    document.getElementById("timer{{ forloop.index }}").innerHTML = "EXPIRED";
   }
-}, 1000);
+}, 250);
 </script>
 
 {% endfor %}
