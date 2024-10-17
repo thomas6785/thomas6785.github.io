@@ -2,9 +2,9 @@
 title: Countdowns
 layout: default
 ---
-{% assign countdown_dates = "2024-10-20,2024-10-30,2024-11-10" | split: "," %}
-{% assign countdown_names = "Countdown A,Countdown B,Countdown C" | split: "," %}
-{% for index in (1..countdown_dates.size) %}
+{% assign countdown_dates = "2024-10-29,2024-11-29,2024-12-21,2024-12-25,2025-01-07,2025-01-20,2025-02-14,2025-02-28" | split: "," %}
+{% assign countdown_names = "Anniversary with Mia,End of Classes,Christmas Break,Christmas Day,San Francisco,AMD Start Day,Valentine's Day,Mega AMD Paycheck" | split: "," %}
+{% for index in (0..countdown_dates.size-1) %}
 
 <!-- Display the countdown timer in an element -->
 <p>Countdown to {{ countdown_names[index] }}</p>
