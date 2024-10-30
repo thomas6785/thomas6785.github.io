@@ -13,7 +13,9 @@ On Thursday I participated in my first Hackathon and had a great time. It was ho
 
 I really enjoyed suggesting an idea I'd been thinking about for a while, which we continued to develop as a team.
 
-It was amazing to work with five fellow nerds: 
+It was amazing to work with five fellow nerds: Aditya Bhargav Akella, Blessed Rita Fonkoh, Bhuvann V, Krishna Teja, Oliver FitzPatrick
+
+'Sabbko' means 'Everyone' in Hindi.
 
 # Sabbko
 Our product was an educational platform for licensing to universities. It would include a library of learning materials grouped into modules. 
