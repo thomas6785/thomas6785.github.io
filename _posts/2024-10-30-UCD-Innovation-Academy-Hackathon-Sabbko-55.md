@@ -38,7 +38,7 @@ Sabbko content would be scripted by subject-matter experts working alongside edu
 
 ---
 
-If lecturers were willing to rely on the Sabbko curriculum, they could drastically reduce their own teaching hours, allowing the university to save money (or increase class size). We believe Sabbko is potentially extremely valuable to a university and they should be willing to pay a substantial license fee. Costs include:
+If lecturers were willing to rely on the Sabbko curriculum, they could drastically reduce their own teaching hours (possibly from 3-5 hours/class/week to a 1 hour/class/week check-in), allowing the university to save money (or increase class size). We believe Sabbko is potentially extremely valuable to a university and they should be willing to pay a substantial license fee. Costs include:
 - Commissioning/creating new lecture content (CapEx)
 - Building and maintaining the user platform and recommender algorithms
 - Building, maintaining, and reviewing the curricula regularly
