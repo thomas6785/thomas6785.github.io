@@ -17,7 +17,11 @@ title: Thomas O'Dea
 {% for post in site.posts %}
 {% if post.tags contains "hide-from-index" %}{% else %}
     <h2><a href="{{ post.url }}">{{post.date | date:"%d/%m/%Y" }} {{ post.title }}</a></h2>
-    {{post.content}}
+    {% if post.tags contains "use-alt-text-on-index" %}
+        {{post.alt_text}}
+    {% else %}
+        {{post.content}}
+    {% endif %}
 {% endif %}
 {% endfor %}
 
