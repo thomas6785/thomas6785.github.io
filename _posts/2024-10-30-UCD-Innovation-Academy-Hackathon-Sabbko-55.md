@@ -1,6 +1,8 @@
 ---
 layout: post
 title: UCD Innovation Academy Hackathon (Sabbko)
+tags: use-alt-text-on-index
+alt_text: On Thursday I participated in my first Hackathon, hosted by UCD's Innovation Academy. It was a mini-Hackathon (only four hours) where we tackled challenges in future-proof learning at universities. Click for more details about our idea.
 ---
 
 On Thursday I participated in my first Hackathon and had a great time. It was hosted by UCD's Innovation Academy and only four hours long. I was placed in a team with five strangers and given a prompt to examine how we can facilitate *future-proof learning* at our university.
