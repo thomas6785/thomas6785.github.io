@@ -1,8 +1,3 @@
----
-title: (Engie) Transposition Thoughts
-layout: post
-tags: engie hide-from-index
----
 <p>
 Transposition seems like a simple way to cut down on analysis time. As a rough estimate, after 4 half-moves (two 'full moves' being two for white, two for black), there are four possible orderings of those four moves which all result in the same position. Therefore, there are only one quarter as many positions to analyse when duplicates are removed. At 6 half-moves, there would be 35 times more duplicates than uniques, and it scales dramatically from there (square of the factorial of the full move count). This analysis neglects the fact that certain move orderings may not be possible (if moves interfere with one another), but nonetheless demonstrates how important transposition is for speeding up analysis.<br/>
 <br/>

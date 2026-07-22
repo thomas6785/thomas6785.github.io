@@ -1,29 +1,4 @@
-#index-updates {
-    font-family:"Arial";
-}
-
-#header-nav {
-    width:50%;
-    margin:auto;
-    font-family:"Lucida Console";
-    display:block;
-    text-align:center;
-    width:50%;
-    margin:0px auto 50px auto;
-}
-
-#main-content {
-    width:50%;
-    margin:auto;
-    /*font-family:"Lucida Console";*/
-}
-
-#post-content {
-    width:50%;
-    margin:auto;
-    font-family:"Arial"
-}
-
+/* Title used for my name at the top of the page */
 title {
     display:block;
     font-size:25pt;
@@ -35,26 +10,23 @@ title {
     font-family:"Courier New";
 }
 
+/* Body of the page */
 body {
     color:#000;
     background-color:#eeeeee;
-    padding:0px 0px 50px 0px;
-    margin:0px;
-    font-size:14pt;
-}
-
-.page-link-item {
-    margin-bottom:1.5em;
 }
 
 h1 {
-    font-family:"Lucida Console";
+    font-family:"Lucida Console","Consolas","Courier New",monospace;
+    font-size:24pt;
 }
 
 h2 {
-    font-size:17pt;
+    font-family:"Lucida Console","Consolas","Courier New",monospace;
+    font-size:18pt;
 }
 
 p {
     font-family:"Arial";
+    font-size:12pt;
 }

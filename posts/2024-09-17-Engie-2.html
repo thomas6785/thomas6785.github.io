@@ -1,10 +1,5 @@
----
-title: (Engie) Basic Idea
-layout: post
-tags: engie hide-from-index
----
 Chess engines basically follow a minimax algorithm, with a heuristic to evaluate positions after a certain depth is reached. The heuristic will generally be a simple enough function that primarily looks at the value of the pieces on the board, how well-placed they are, and each player's control of space on the board generally. It does <i>not</i> consider whether these pieces are vulnerable to attack. This can lead to the <i>horizon problem</i>. For instance, consider the board below:<br/>
-<img src="/images/engie-basic-idea-black-to-move.png" width="40%"> (Black to move)<br/>
+<img src="../images/engie-basic-idea-black-to-move.png" width="40%"> (Black to move)<br/>
 A simple heuristic will judge that white is winning hugely simply because they have 12 points of value (queen=9, pawn=1) where black only has 5 (rook=5). However, black is in fact winning instantly with Rc1#.<br/>
 <br/>
 While this example exaggerates the problem, it is likely to appear in less obvious ways, such as if the end of the tree search landed just before a piece was to be recaptured.<br/>
