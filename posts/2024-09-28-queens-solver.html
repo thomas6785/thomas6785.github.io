@@ -1,23 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
 <p>I've written a basic brute forcer for the new LinkedIn game
 <em>Queens</em>.</p>
 <p>Current version is a straightforward recursive function:</p>
 <pre><code>define attempt_solve( board ):
     while True:
         next_cell &lt;= get the next unmarked cell
-        
+
         If none are found:
             Check if the game is complete
             If so:
                 Return (True,board)
             else:
                 Return False # This line is bad
-        
+
         If one is found:
             new_board &lt;= copy the board
-            
+
             Add a queen to next_cell
             Mark all incident cells to the new queen as &#39;x&#39;
-            
+
             attempt_solve( new_board )
 
             If this returns (True,solved_board):
@@ -26,7 +35,9 @@
                 Mark new_cell on board as &#39;x&#39;</code></pre>
 <p>It solved today's Queens in under 122 milliseconds. This could be be
 reduced quite a bit with some more optimisation.</p>
-<p>This was a fun challenge I’d recommend anyone giving a go at.</p>
-<p><strong>Tip</strong>: when getting the ‘next unmarked cell’, you can
+<p>This was a fun challenge I'd recommend anyone giving a go at. Getting the basics off the ground is straightforward, and there is a lot of scope for optimisation.</p>
+<p><strong>Tip</strong>: when getting the 'next unmarked cell', you can
 choose any unmarked cell. It is much, much more efficient to choose from
 the colour group with the fewest remaining options.</p>
+</body>
+</html>

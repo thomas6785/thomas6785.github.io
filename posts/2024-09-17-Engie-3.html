@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
 <p>
 Transposition seems like a simple way to cut down on analysis time. As a rough estimate, after 4 half-moves (two 'full moves' being two for white, two for black), there are four possible orderings of those four moves which all result in the same position. Therefore, there are only one quarter as many positions to analyse when duplicates are removed. At 6 half-moves, there would be 35 times more duplicates than uniques, and it scales dramatically from there (square of the factorial of the full move count). This analysis neglects the fact that certain move orderings may not be possible (if moves interfere with one another), but nonetheless demonstrates how important transposition is for speeding up analysis.<br/>
 <br/>
@@ -36,3 +45,5 @@ I came up with a decent solution to this problem after some head-scratching, whi
 This way, when the transposing node come along and realises it shares its positions with a node previously analysed, it can simply check whether any of its past positions conflict with any of those in the evaluation's list. If it doesn't, the transposing node can safely reuse the original node's evaluation and return.<br/>
 <br/>
 This approach also solves the 50-move-rule problem, whereby the transposing node simply checks that the move count till the next irreversible move will not cause their line to exceed 50.
+</body>
+</html>

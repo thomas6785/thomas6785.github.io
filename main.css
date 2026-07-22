@@ -2,18 +2,21 @@
 title {
     display:block;
     font-size:25pt;
-    text-align:center;
+    text-align:left;
     padding:1.5em 0px 1.5em 0px;
-    width:50%;
+    width:100%;
     margin:30px auto 30px auto;
     background-color:#cccccc;
-    font-family:"Courier New";
+    font-family:"Lucida Console","Consolas","Courier New",monospace;
+    font-weight:bold;
 }
 
 /* Body of the page */
 body {
     color:#000;
     background-color:#eeeeee;
+    width:1000px;
+    /*margin: 0px auto 0px auto;*/
 }
 
 h1 {
@@ -28,5 +31,12 @@ h2 {
 
 p {
     font-family:"Arial";
-    font-size:12pt;
+    font-size:15pt;
+}
+
+.link-favicon {
+    height:16px;
+    width:16px;
+    margin-left:5px;
+    margin-right:5px;
 }
