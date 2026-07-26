@@ -17,6 +17,8 @@ body {
     background-color:#eeeeee;
     width:1000px;
     /*margin: 0px auto 0px auto;*/
+    font-family:"Arial";
+    font-size:15pt;
 }
 
 h1 {
@@ -27,11 +29,6 @@ h1 {
 h2 {
     font-family:"Lucida Console","Consolas","Courier New",monospace;
     font-size:18pt;
-}
-
-p {
-    font-family:"Arial";
-    font-size:15pt;
 }
 
 .link-favicon {
