@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+
+<p>Since I began using it, SystemVerilog has seemed to me like a
+language with serious limitations. In my second year of college, using
+it for the first time, I thought surely this only seemed the case
+because of my inexperience – I felt quite wise for arriving at this
+conclusion. Now, several years later, I have been maintaining a list of
+nits I have with SystemVerilog – I suppose my first instinct was
+right.</p>
+<p>Granted most of these gripes are focused on the syntax of the
+language rather than the underlying structures – really, this is because
+SystemVerilog <i>is</i> only a syntax, and any issue I take with the underlying
+capabilities it offers would be an issue with digital electronics as a
+whole.</p>
+<p>Some of these notes are also criticisms of how the language is
+<em>normally used</em>, which is not necessarily fair to those who wrote
+the standard.</p>
+<p>Given the sheer amount of time I spend working with this language,
+you can expect this list to grow in future!</p>
+<h2 id="no-disambiguation-of-inputs-and-outputs">No disambiguation of
+inputs and outputs</h2>
+<p>Take an example like the below:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode verilog"><code class="sourceCode verilog"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> eth_mac_1g_rgmii <span class="op">(</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>  clk<span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>  rst_n<span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// whatever signals you may have</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">output</span> rx_clk</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    rgmii_phy_if <span class="op">(</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">// whatever</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        .clk<span class="op">(</span>clk<span class="op">),</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        .rx_clk<span class="op">(</span>rx_clk<span class="op">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    eth_mac_1g <span class="op">(</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// whatever</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        .clk<span class="op">(</span>clk<span class="op">),</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        .rx_clk<span class="op">(</span>rx_clk<span class="op">)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code></pre></div>
+<p>Suppose I'm tracing the <code>rx_clk</code> signal and I arrive here
+– is it driven by <code>rgmii_phy_if</code> or <code>eth_mac_1g</code>?
+I suppose I'll have to open both and check. Repeat at every level of
+hierarchy.</p>
+<p>Of course, there is a relatively widespread convention (for example
+in <a
+href="https://github.com/lowRISC/style-guides/blob/master/VerilogCodingStyle.md">the
+lowRISC style guide</a>) of suffixing ports with <code>_o</code> and
+<code>_i</code> to disambiguate, which helps enormously. But having
+spent many hours debugging legacy code that <em>didn't</em> adhere to
+this convention, I feel it's a failing of the language itself not to
+save poor junior engineers from this fate.</p>
+<h2 id="instantiations-do-not-resemble-declarations">Instantiations do
+not resemble declarations</h2>
+<p>Languages like C have the wonderful feature that the syntax for
+<em>calling</em> a function greatly resembles the syntax for declaring
+one. So, you see a function declared like this:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> ethernet_intr_mask_set<span class="op">(</span>ethernet_t ethernet<span class="op">,</span> ethernet_intr intr_mask<span class="op">);</span></span></code></pre></div>
+<p>Well, if you want to call it, simply copy-paste the line, remove the
+<code>void</code>, and substitue your arguments:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ethernet_intr_mask_set<span class="op">(</span>my_ethernet<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span></code></pre></div>
+<p>In SystemVerilog, instantiating a module doesn't offer the same
+convenience:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode verilog"><code class="sourceCode verilog"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Declaring a module looks like this:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">module</span> my_axi_device <span class="op">(</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Clocking and reset</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>  logic clk_i<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>  logic rst_ni<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// AXI device interface</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">input</span>  axi_req_t axi_req_i<span class="op">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">output</span> axi_rsp_t axi_rsp_o</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Instantiating one looks like this:</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>my_axi_device my_instance_name <span class="op">(</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    .clk_i      <span class="op">(</span> <span class="co">/*placeholder*/</span> <span class="op">),</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    .rst_ni     <span class="op">(</span> <span class="co">/*placeholder*/</span> <span class="op">),</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    .axi_req_i  <span class="op">(</span> <span class="co">/*placeholder*/</span> <span class="op">),</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    .axi_rsp_O  <span class="op">(</span> <span class="co">/*placeholder*/</span> <span class="op">)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span></code></pre></div>
+<p>I've often wondered (while tediously converting the former to the
+latter, revelling in how clever I am using the multiline editor to
+replace 'input's with'.'s, then realising I'd included a blank line or
+comment in my multiline cursor and have royally screwed up the
+formatting and need to begin again) if a high-end IDE couldn't automate
+this process for me. At the time of writing I don't have access to any
+such tool, so I put together my own quick-and-dirty script for it (which
+I may share, if I find time to clean it up).</p>
+<h2 id="no-way-of-setting-required-parameters">No way of setting
+required parameters</h2>
+<p>I think this title speaks for itself - most EDA tools (though not
+all) require module parameters to have a default value assigned to them,
+essentially making them optional.</p>
+<p>The problem, of course, being that plenty of modules do not have a
+‘sensible default' configuration.</p>
+<h2 id="the-end-of-the-begining">The <code>end</code> and
+<code>begin</code>ing</h2>
+<p>Hopefully another title that speaks for itself – though supposedly
+inspired by C, SystemVerilog, for some unknowable reason prefers
+keywords <code>begin</code> and <code>end</code> to the simple {curly
+braces} preferred by languages such as C and by developers such as
+everybody.</p>
+<p>This is a lovely surprise when, for whatever reason, one finds
+oneself working without their preferred IDE, in something like
+pluginless Vim, where most syntax highlighters will not highlight
+matching <code>begin</code>/<code>end</code> pairs, leaving you at the
+mercy of the original author's indentation.</p>
+<p>That manifests at its worst when a software engineer with a delusion
+of understanding SystemVerilog writes an <code>always_comb</code> block
+spanning hundreds of lines, driving multiple FSMs, and creating an
+abundance of inferred latches to add to the ever-growing list of “oh
+don't worry about that one, it's always there” warnings.</p>
+<h2 id="attributes-are-underused">Attributes are underused</h2>
+<p>I have seen RTL which provides meta-information to PD teams using the
+<em>names</em> of signals, with rules like:</p>
+<ul>
+<li>If <code>clk</code> appears at the start or end of the signal name,
+it is a clock for STA purposes</li>
+<li>If <code>seu</code> appears in the signal name, it should be
+SEU-hardened</li>
+</ul>
+<p>It seems to me this is exactly the use case for <em>attributes</em>,
+which offer a far more robust approach to this than fragile naming
+conventions. The advantage of naming, I suppose, is that it is
+guaranteed to be supported by all views in all tooling.</p>
+<p>I see potential for far more powerful applications of attributes:</p>
+<ul>
+<li>Mark nets as false paths inline, rather than in a separate
+constraints file where it can break if the signal name ever changes or
+the file moves</li>
+<li>Provide hints for synthesis tools about expected switching activity
+on a net</li>
+</ul>
+<h2 id="verbosity">Verbosity</h2>
+<p>I do appreciate the Zen of Python's second statement: Explicit is
+better than implicit.</p>
+<p>Nonetheless, I shudder to imagine the accumulated wear-and-tear on my
+keyboard from the sheer number of times I have typed the
+<strong>exact</strong> string
+<code>always_ff @ (posedge clk_i or negedge rst_ni) begin</code>.</p>
+<p>I don't really have a better idea in mind (don't say macros) but it
+certainly warrants an analysis.</p>
+<h2 id="interfaces-are-underutilised">Interfaces are underutilised</h2>
+<p>It seems historically there was mixed supported among EDA vendors for
+SystemVerilog <code>interface</code>s, which is often pointed to as the
+reason not to use them.</p>
+<p>As far as I can tell, they are now supported by all major EDA tools
+(though I am open to being corrected if you know of any exceptions).</p>
+<p>I strongly suspect the <i>real</i> reason interfaces are not adopted by many
+teams is simply because they confuse people – certainly they confused
+me, who assumed initially that they would behave like a
+<code>struct</code>, but bidirectional. In fact, interfaces are
+conceptually closer to modules than structs, and once one takes the time
+to understand them, their usefulness is irrefutable.</p>
+<p>To me, the key advantage of interfaces over structs is not any of the
+fancy <code>clocking</code> or <code>modports</code> – it is simply the
+fact that they are <em>parametrisable</em>.</p>
+<p>Perhaps you can relate – suppose your SoC has a 64-bit address space,
+so you've defined a bus <code>struct</code> with a 64-bit address wire.
+Now suppose your block only uses 10 bits of address space. On first
+lint, your terminal is flooded with a deluge of 54 “UNUSEDSIGNAL”s. If
+only you could parametrise the width of the address.</p>
+
+</body>
+</html>
