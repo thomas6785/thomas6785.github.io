@@ -1,3 +1,8 @@
+---
+title: SystemVerilog is a Terrible Language
+layout: post
+---
+
 Since I began using it, SystemVerilog has seemed to me like a language with serious limitations. In my second year of college, using it for the first time, I thought surely this only seemed the case because of my inexperience -- I felt quite wise for arriving at this conclusion. Now, several years later, I have been maintaining a list of nits I have with SystemVerilog -- I suppoes my first instinct was right.
 
 Granted most of these gripes are focused on the syntax of the language rather than the underlying structures -- really, this is because SystemVerilog is only a syntax, and any issue I take with the underlying capabilities it offers would be an issue with digital electronics as a whole.

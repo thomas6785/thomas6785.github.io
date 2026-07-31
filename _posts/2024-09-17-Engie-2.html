@@ -1,7 +1,6 @@
 ---
-title: (Engie) Basic Idea
+title: (Chess Engine) Basic Idea
 layout: post
-tags: engie hide-from-index
 ---
 Chess engines basically follow a minimax algorithm, with a heuristic to evaluate positions after a certain depth is reached. The heuristic will generally be a simple enough function that primarily looks at the value of the pieces on the board, how well-placed they are, and each player's control of space on the board generally. It does <i>not</i> consider whether these pieces are vulnerable to attack. This can lead to the <i>horizon problem</i>. For instance, consider the board below:<br/>
 <img src="/images/engie-basic-idea-black-to-move.png" width="40%"> (Black to move)<br/>
