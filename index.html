@@ -1,28 +1,37 @@
 ---
-layout: default
-title: Thomas O'Dea
+title: Index
 ---
 
-<h1>Quick Links</h1>
-<p class="page-link-item"><a href="notes">College notes (Autumn Stage 4)</a></p>
-<p class="page-link-item"><a href="https://www.linkedin.com/in/thomas-odea-dublin/">View my LinkedIn</a></p>
-<p class="page-link-item"><a href="/documents/Thomas_ODea_Resume.pdf">View my resume</a></p>
+<!DOCTYPE html>
 
-<h1>Projects</h1>
-<p class="page-link-item"><a href="/projects/engie.html">Chess Engine Project ("Engie")</a></p>
+<html>
+    <head>
+        {% include html_head_boilerplate.html %}
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
+    <body>
+        {% include page_header.html %}
 
-<h1>Updates and Points of Interest</h1>
-<div id="index-updates">
+            <div id="quick-links">
+                <h1>Quick Links</h1>
+                <img class="link-favicon" src="https://www.linkedin.com/favicon.ico" alt=""><a href="https://www.linkedin.com/in/thomas-odea-dublin/">View my LinkedIn</a><br/>
+                <img class="link-favicon" src="https://github.githubassets.com/favicons/favicon.svg" alt=""><a href="https://www.github.com/thomas6785">View my GitHub</a><br/>
+            </div>
 
-{% for post in site.posts %}
-{% if post.tags contains "hide-from-index" %}{% else %}
-    <h2><a href="{{ post.url }}">{{post.date | date:"%d/%m/%Y" }} {{ post.title }}</a></h2>
-    {% if post.tags contains "use-alt-text-on-index" %}
-        {{post.alt_text}}
-    {% else %}
-        {{post.content}}
-    {% endif %}
-{% endif %}
-{% endfor %}
+            <div id="updates-list">
+                <h1>Recent Posts</h1>
+                <div id="index-updates">
 
-</div>
+                <ul>
+                    {% for post in site.posts %}
+                    {% if post.tags contains "hide-from-index" %}{% else %}
+                        <li><a href="{{ post.url }}">{{ post.title }}</a><br></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

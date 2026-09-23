@@ -1,7 +1,6 @@
 ---
-title: (Engie) Transposition Thoughts
+title: (Chess Engine Pt. 3) Transposition Thoughts
 layout: post
-tags: engie hide-from-index
 ---
 <p>
 Transposition seems like a simple way to cut down on analysis time. As a rough estimate, after 4 half-moves (two 'full moves' being two for white, two for black), there are four possible orderings of those four moves which all result in the same position. Therefore, there are only one quarter as many positions to analyse when duplicates are removed. At 6 half-moves, there would be 35 times more duplicates than uniques, and it scales dramatically from there (square of the factorial of the full move count). This analysis neglects the fact that certain move orderings may not be possible (if moves interfere with one another), but nonetheless demonstrates how important transposition is for speeding up analysis.<br/>
@@ -14,13 +13,13 @@ But there's a big problem with it. Consider two ways of starting a game:
             1. Nf3 Nf6<br/>
             2. Nc3 Nc6
         </p>
-        <img src="/images/engie-basic-idea-opening-example.png" width="66%">
+        <img src="/assets/engie-basic-idea-opening-example.png" width="66%">
     </div><div style="float:left;width:49%;">
         <p>
             1. Nc3 Nf6<br/>
             2. Nf3 Nc6
         </p>
-        <img src="/images/engie-basic-idea-opening-example.png" width="66%">
+        <img src="/assets/engie-basic-idea-opening-example.png" width="66%">
     </div>
 </div>
 Can you spot the difference between these two positions?<br/>

@@ -1,0 +1,50 @@
+/*******************************************/
+/* Style for the header and navigation bar */
+/*******************************************/
+
+#header-and-nav {
+    border-bottom: 1px solid black;
+}
+
+title {
+    display:block;
+    width:100%;
+    background-color:#cccccc;
+    font-size:25pt;
+    text-align:center;
+}
+
+#navigation {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-item {
+    display: block;
+}
+
+/******************************************/
+/* Generalised styles for the entire site */
+/******************************************/
+body {
+    color:#000;
+    background-color:#eeeeee;
+    font-family: "Helvetica";
+    margin-left:auto;
+    margin-right:auto;
+    width:60%;
+}
+
+h1 {
+    font-size:20pt;
+    margin-bottom:0;
+}
+
+code {
+    font-family: "Courier New";
+    font-size: 10pt;
+    background-color:#dddddd;
+    display:inline-block;
+    border:1px solid #cccccc;
+}

@@ -2,15 +2,32 @@
 
 <html>
 <head>
-
-    {% include google_analytics_tag.html %}
     {% include html_head_boilerplate.html %}
-
+    <link rel="stylesheet" href="/css/post.css">
 </head>
 <body>
     {% include page_header.html %}
 
     <div id="post-content">
+        <h1>{{page.title}}</h1>
+        <table>
+            {% if page.previous %}
+            <tr>
+                <td>Previous Post:</td>
+                <td><a href="{{page.previous.url}}">{{page.previous.title}}</a></td>
+            </tr>
+            {% endif %}
+            {% if page.next %}
+            <tr>
+                <td>Next Post:</td>
+                <td><a href="{{page.next.url}}">{{page.next.title}}</a></td>
+            </tr>
+            {% endif %}
+            <tr>
+                <td class="post-date">{{page.date | date: "%B %d, %Y"}}</td>
+            </tr>
+        </table>
+        <hr>
         {{content}}
     </div>
 </body>

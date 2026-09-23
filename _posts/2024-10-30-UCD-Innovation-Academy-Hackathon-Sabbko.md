@@ -1,19 +1,18 @@
 ---
 layout: post
-title: UCD Innovation Academy Hackathon (Sabbko)
-tags: use-alt-text-on-index
-alt_text: On Thursday I participated in my first Hackathon, hosted by UCD's Innovation Academy. It was a mini-Hackathon (only four hours) where we tackled challenges in future-proof learning at universities. Click for more details about our idea.
+title: UCD Innovation Academy Hackathon ('Sabbko')
 ---
 
 On Thursday I participated in my first Hackathon and had a great time. It was hosted by UCD's Innovation Academy and only four hours long. I was placed in a team with five strangers and given a prompt to examine how we can facilitate *future-proof learning* at our university.
 
-I really enjoyed suggesting an idea I'd been thinking about for a while, which we continued to develop as a team.
+Our team won first prize! I really enjoyed suggesting an idea I'd been thinking about for a while, which we continued to develop as a team.
+<!--TODO add an update about being subsequently invited to Notre Dame-->
 
 It was amazing to work with five fellow nerds: Aditya Bhargav Akella, Blessed Rita Fonkoh, Bhuvann V, Krishna Teja, Oliver FitzPatrick.
 
 
 ### Sabbko
-Our product was an educational platform for licensing to universities. It would include a library of learning materials grouped into modules. 
+Our product was an educational platform for licensing to universities. It would include a library of learning materials grouped into modules.
 A consortium of universities and colleges around the world would produce this content for Sabbko to be licensed out to other, smaller universities.
 Basically, imagine Coursera, but with three **important** differences:
 
@@ -34,8 +33,10 @@ Sabbko content would be scripted by subject-matter experts working alongside edu
 
 ---
 
-If lecturers were willing to rely on the Sabbko curriculum, they could drastically reduce their own teaching hours (possibly from 3-5 hours/class/week to a 1 hour/class/week check-in), allowing the university to save money (or increase class size). We believe Sabbko is potentially extremely valuable to a university and they should be willing to pay a substantial license fee. Costs include:
-- Commissioning/creating new lecture content (CapEx)
+If lecturers were willing to rely on the Sabbko curriculum, they could drastically reduce their own teaching hours (possibly from 3-5 hours/class/week to a 1 hour/class/week check-in), allowing the university to save money (or increase class size). We believe Sabbko is potentially extremely valuable to a university and they should be willing to pay a substantial license fee.
+
+Operating costs include:
+- Commissioning/creating new lecture content
 - Building and maintaining the user platform and recommender algorithms
 - Building, maintaining, and reviewing the curricula regularly
 - Cloud space to host the lecture content
