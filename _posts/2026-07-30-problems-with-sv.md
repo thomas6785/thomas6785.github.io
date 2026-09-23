@@ -3,9 +3,9 @@ title: SystemVerilog is a Terrible Language
 layout: post
 ---
 
-Since I began using it, SystemVerilog has seemed to me like a language with serious limitations. In my second year of college, using it for the first time, I thought surely this only seemed the case because of my inexperience -- I felt quite wise for arriving at this conclusion. Now, several years later, I have been maintaining a list of nits I have with SystemVerilog -- I suppoes my first instinct was right.
+Since I began using it, SystemVerilog has seemed to me like a language with serious limitations. In my second year of college, using it for the first time, I thought surely this only seemed the case because of my inexperience -- I felt quite wise for arriving at this conclusion. Now, several years later, I am inclined to say my first instinct was right. I have been maintaining a list of nits I have with SystemVerilog.
 
-Granted most of these gripes are focused on the syntax of the language rather than the underlying structures -- really, this is because SystemVerilog is only a syntax, and any issue I take with the underlying capabilities it offers would be an issue with digital electronics as a whole.
+Granted most of these gripes are focused on the syntax of the language rather than the underlying structures -- really, this is because SystemVerilog is only a syntax, and any issue I take with the underlying capabilities it offers would be an issue with digital electronics as a discipline.
 
 Some of these notes are also criticisms of how the language is _normally used_, which is not necessarily fair to those who wrote the standard.
 
@@ -22,14 +22,14 @@ module eth_mac_1g_rgmii (
 );
     rgmii_phy_if (
         // whatever
-        .clk(clk),
-        .rx_clk(rx_clk)
+        .clk    (clk),
+        .rx_clk (rx_clk)
     );
 
     eth_mac_1g (
         // whatever
-        .clk(clk),
-        .rx_clk(rx_clk)
+        .clk    (clk),
+        .rx_clk (rx_clk)
     );
 endmodule
 ```
@@ -71,9 +71,9 @@ my_axi_device my_instance_name (
 I've often wondered (while tediously converting the former to the latter, revelling in how clever I am using the multiline editor to replace 'input's with '.'s, then realising I'd included a blank line or comment in my multiline cursor and have royally screwed up the formatting and need to begin again) if a high-end IDE couldn't automate this process for me. At the time of writing I don't have access to any such tool, so I put together my own quick-and-dirty script for it (which I may share, if I find time to clean it up).
 
 ## No way of setting required parameters
-I think this title speaks for itself - most EDA tools (though not all) require module parameters to have a default value assigned to them, essentially making them optional.
+I think this title speaks for itself -- most EDA tools (though not all) require module parameters to have a default value assigned to them, essentially making them optional.
 
-The problem, of course, being that plenty of modules do not have a 'sensible default' configuration.
+The problem, of course, being that plenty of modules do not have a 'sensible default' configuration. What is the 'default' memory for a RAM primitive, for instance?
 
 ## The `end` of the `begin`ing
 Hopefully another title that speaks for itself -- though supposedly inspired by C, SystemVerilog, for some unknowable reason prefers keywords `begin` and `end` to the simple \{curly braces\} preferred by languages such as C and by developers such as everybody.
@@ -107,8 +107,8 @@ It seems historically there was mixed supported among EDA vendors for SystemVeri
 
 As far as I can tell, they are now supported by all major EDA tools (though I am open to being corrected if you know of any exceptions).
 
-I strongly suspect the real reason interfaces are not adopted by many teams is simply because they confuse people -- certainly they confused me, who assumed initially that they would behave like a `struct`, but bidirectional. In fact, interfaces are conceptually closer to modules than structs, and once one takes the time to understand them, their usefulness is irrefutable.
+I strongly suspect the real reason interfaces are not adopted by many teams is simply because they confuse people -- certainly they confused me -- who assume initially that they would behave like a `struct`, but bidirectional. In fact, interfaces are conceptually closer to modules than structs, and once one takes the time to understand them, their usefulness is irrefutable.
 
 To me, the key advantage of interfaces over structs is not any of the fancy `clocking` or `modports` -- it is simply the fact that they are _parametrisable_.
 
-Perhaps you can relate -- suppose your SoC has a 64-bit address space, so you've defined a bus `struct` with a 64-bit address wire. Now suppose your block only uses 10 bits of address space. On first lint, your terminal is flooded with a deluge of 54 "UNUSEDSIGNAL"s. If only you could parametrise the width of the address.
+Perhaps you can relate -- suppose your SoC has a 64-bit address space, so you've defined a bus `struct` with a 64-bit address wire. Now suppose some peripheral only uses 10 bits of address space. On first lint, your terminal is flooded with a deluge of 54 "UNUSEDSIGNAL"s. If only you could parametrise the width of the address.
