@@ -9,4 +9,4 @@ Excited to announce I am working with lowRISC C.I.C. this summer in their Cambri
 
 While I have had a fantastic time at AMD, I'm very excited by the learning opportunities presented working at a smaller company, and looking forward to making my contribution to the project.
 
-![lowRISC logo](/images/2026-05-29-lowrisc-logo.png){: width="50%" }
+![lowRISC logo](/assets/2026-05-29-lowrisc-logo.png){: width="50%" }

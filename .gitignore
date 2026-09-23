@@ -6,3 +6,4 @@
 *.fls
 Gemfile.lock
 _site/*
+.vscode

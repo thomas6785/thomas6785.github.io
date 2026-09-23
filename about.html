@@ -7,30 +7,11 @@ title: About
 <html>
     <head>
         {% include html_head_boilerplate.html %}
-        <link rel="stylesheet" href="/index.css">
+        <link rel="stylesheet" href="/css/index.css">
     </head>
     <body>
         {% include page_header.html %}
 
-            <div id="quick-links">
-                <h1>Quick Links</h1>
-                <p class="page-link-item"><a href="https://www.linkedin.com/in/thomas-odea-dublin/">View my LinkedIn</a></p>
-            </div>
-
-            <div id="updates-list">
-                <h1>Recent Posts</h1>
-                <div id="index-updates">
-
-                <ul>
-                    {% for post in site.posts %}
-                    {% if post.tags contains "hide-from-index" %}{% else %}
-                        <li><a href="{{ post.url }}">{{ post.title }}</a><br></li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-
-                </div>
-            </div>
-        </div>
+        This page is currently under construction. <!-- TODO write About section -->
     </body>
 </html>
