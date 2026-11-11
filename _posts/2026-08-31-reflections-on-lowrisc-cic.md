@@ -32,47 +32,20 @@ I submitted a Pull Request to overwrite a piece of legacy Ethernet IP, and my de
 
 # Lessons Learned
 
-Keep a checklist. There are a million little things to check and you will forget some -- functional correctness, documentation, CDC, RDC, power, timing, correct handling of primitives, protocol compliance. In future projects I would like a sign-off checklist detailing which of these items should be checked and at what intervals.
+## Keep a signoff checklist
+There are a million little things to check and you will forget some -- functional correctness, documentation, CDC, RDC, power, timing, correct handling of primitives, protocol compliance checks, trial synthesis. In future projects I would like a sign-off checklist detailing which of these items should be checked and at what intervals.
 
 In a similar vein, I think it would be valuable to me to start all my projects from a template moving forward. Setting up those flows is cumbersome, which makes it tempting to skip them, or do it manually 'from time to time'.
 
-# Git is still amazing
+## Git is still amazing
 Obviously I had used Git before, but more often for my own work than collaborative projects.
 
 In particular, I find using fixups with an autosquashing interactive rebase to be excellent.
 
-# Some specific skills I learned
+## CocoTB is excellent
+I wrote a [whole post about it]({% post_url 2026-11-05-a-love-letter-to-cocotb %}).
 
-- AXI4
-- AXI ATOPS
-- AXI Stream
-- (R)(G)MII
-- Ethernet protocol
-- Some tcl
-- SVA's
-
-# A wishlist
-- FuseSoC is nearly great but basically terrible
--
-
-# CocoTB is excellent
-One of the first questions I asked myself starting out in the semiconductor industry: Why are testbenches written in SystemVerilog, a hardware description language (HDL)?
-
-The answer of course is that SystemVerilog is not just a HDL, it is also an object-oriented languages, and includes a language for writing properties in formal notation. This is an awful mess of three languages mushed into one, and I am of the opinion that the non-synthesisable constructs of SystemVerilog should be stripped out, and it reserved purely for hardware description.
-
-Tests are *software*. They run procedurally, albeit with multiple threads. It stands to reason that they ought to be written in a conventional programming language. This is where CocoTB comes in: a Python package that provides the means to drive and monitor signals in an RTL design. This is invaluable for verification -- all the cumbersome syntax and infrastructural overhead of SystemVerilog is replaced by a Python script.
-
-Of course, I am biased because I know Python extremely well and know very little about using SystemVerilog for verification. Nonetheless, I see the following objective advantages of using CocoTB:
-
-* Access to the Python ecosystem of package to aid in modelling the DUT (e.g. DSP is very easy in Python)
-
-* Access to the Python ecosystem for infrastructural tools like linting, test frameworks, etc.
-
-* Increased object-oriented programming capabilities when compared to SystemVerilog
-
-* Behavioural modelling of your DUT is better done in a language other than SystemVerilog to prevent the same bug from being introduced in both the DUT and the model. This is possible in SystemVerilog using the C DPI, but not straightforward.
-
-# Test your tests for reproducibility
+## Test your tests for reproducibility
 Reproducibility is vital -- given the same random seed, the same test needs to be able to be recreated.
 
 During the later stages of my Ethernet project I was starting to feel relatively confident in design, when I encountered an unexpected failing test. Praying it was something I could simply defeature, I copied the seed, enabled tracing, and re-ran the test.
@@ -89,47 +62,17 @@ So, my lesson was learned: it's not enough to dump a seed out at the start of yo
 
 This is a form of what I'm calling "meta-testing" -- that is, testing your tests.
 
-# Meta-testing
+## Meta-testing
 The other, more obvious, form of meta-testing is testing that design *fail* when the dzesign they are testing is broken.
 
 I am still brainstorming clean ways of doing this -- of course there are obvious options like injecting errors into input/output data, but the trickier question is in how to implement the *flow* to do that. Ideally, you want the bad behaviour to be implemented in the source code of your design rather than 'patched on'; that is to avoid introducing a new complication that needs testing.
 
 You could, for example, use 'diff' (or 'git diff') to store some 'breaks'. Then create a simple script to apply to those diffs, run the tests, and expect the appropriate failures.
 
-# Using AXI
-This was my first time using AXI, and
+## Design is not even half the battle
+Including integration with the SoC top, software integration, documentation, flow setup, maintaining a clean workspace, and (most of all) writing countless tests, I would say that actual RTL design occupied about a quarter of my time on the Ethernet project. The idea that the design work is only a small fraction of the overall effort was not new to me, but I certainly underestimated the extent!
 
+## FPGA's for Testing are Amazing
+One wonderufl feature of lowRISC's workflows is the use of FPGA's for regression tests. Every pull request submitted to the GitHub repo is put into the pipeline to build, and this pipeline runs on a server connected to an array of FPGA's! That mean all designs are portable for ASIC or FPGA retargeting, and it means tests run orders of magnitude faster!
 
-
-
-
-
-
-
-Lessons learned:
-    - CocoTB is excellent
-    - Reproducibility is vital
-    - Trial synthesis is part of your regression suite
-    - Design is not even half the battle
-    - Go Karting
-    - Leadership transparency
-    - FPGA's for test and development
-    - Scope for technical ownership
-    - Staving off technical debt
-    - Learning opportunities and mentorship
-    - Creating templates is useful
-    - Benefits and disadvantages of sitting in a room with a different team
-    - Sign-off checklists (there's a lot of little things to double-check that are easy to overlook)
-    - The disconnect between design effort and realised cost
-    - The importance of resource utilisation
-    - FuseSoC
-    - Musings on version control, package management, FuseSoC cores, and hashing
-    - Loopback multiplexor
-    - AXI is cool
-    - AXI Stream is cool
-    - Boilerplate assertions for those protocols would be good
-    - Thoughts on coverage: where to place collectors, pairwise cross-coverage, and why bins come in threes
-    - Idea: you should have zero pipeline stages in a design if at all possible - if you need them for timing, introduce them separately, but keep the pipelining decoupled from the design itself
-    - Memory is hard
-    - lowRSIC code is very readable, take a look
-    - Automating SystemVerilog stuff - why isn't there a good IDE for this?
+Having designs portable for ASIC and FPGA does add some overhead -- however I would argue it enforces good, clean separation of design from primitives, which makes retargetting for a different ASIC library easier in future.
